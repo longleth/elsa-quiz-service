@@ -1,0 +1,31 @@
+#########################################################
+# Deployments, Replica Sets and Pods on K8S environment #
+#########################################################
+
+apiVersion:                   apps/v1
+kind:                         Deployment
+
+metadata:
+  name:                       quiz-deploy-pod
+
+spec:
+  selector:
+    matchLabels:
+      # Replica Set
+      app:                    quiz-pod
+
+  replicas:                   2
+
+  # auto-generated pods using pod definition in this template
+  template:
+    metadata:
+      labels:
+        # auto-generated pods names
+        app:                  quiz-pod
+
+    spec:
+      containers:
+        - name:               quiz
+          image:              longlethanh/quiz:0.0.1-SNAPSHOT
+          ports:
+            - containerPort:  8888
