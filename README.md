@@ -71,3 +71,23 @@ Response JSON Body:
       ]
     }
   ]
+
+# Docker
+
+> mvn clean install
+
+> docker build -t longlethanh/quiz:0.0.1-SNAPSHOT .
+
+> docker push longlethanh/quiz:0.0.1-SNAPSHOT
+
+> docker network create elsa-vpn
+
+> docker run -d -p 8081:8081 --name elsa-quiz --network elsa-vpn longlethanh/quiz:0.0.1-SNAPSHOT
+
+> docker run -d --name elsa-mongodb --network elsa-vpn -p 27017:27017 -e MONGO_INITDB_ROOT_USERNAME=admin -e MONGO_INITDB_ROOT_PASSWORD=password mongo:latest
+
+> docker run --rm -it --network elsa-vpn mongo mongosh mongodb://admin:password@elsa-mongodb:27017/elsa?authSource=admin
+
+> docker exec -it elsa-mongodb mongosh -u admin -p password
+
+![img.png](containers.png)
